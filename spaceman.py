@@ -1,13 +1,21 @@
 import random
 
+#form the list of words and select one randomly
 def load_word():
-   f = open('words.txt', 'r')
-   words_list = f.readlines()
-   f.close()
+  #use of a tuple because words will not change
+  wordList = (
+  "bowl", "power", "window", "computer", "phone", "juice", "macbook", "desktop",
+  "laptop", "dog", "cat", "lemon", "cable", "mirror", "hat"
+           )
 
-   words_list = words_list[0].split(' ')
-   secret_word = random.choice(words_list)
-   return secret_word
+  guessWord = ()
+  # randomly choose single word from the list
+  secretWord = random.choice(wordList)
+  #make a variable for the length of the chosen word
+  wordLength = len(secretWord)
+  alphabet = "abcdefghijklmnopqrstuvwxyz"
+  #form empty mutable list to store guessed letters
+  letter_storage = []
 
 def is_word_guessed(secret_word, letters_guessed):
     '''
