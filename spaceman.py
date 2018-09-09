@@ -8,22 +8,26 @@ def load_word():
   "laptop", "dog", "cat", "lemon", "cable", "mirror", "hat"
            )
 
-  guessWord = ()
+  guessWord = []
   # randomly choose single word from the list
-  secretWord = random.choice(wordList)
+  secret_Word = random.choice(wordList)
   #make a variable for the length of the chosen word
-  wordLength = len(secretWord)
+  wordLength = len(secret_Word)
   alphabet = "abcdefghijklmnopqrstuvwxyz"
   #form empty mutable list to store guessed letters
   letter_storage = []
 
-def is_word_guessed(secret_word, letters_guessed):
-    '''
-    secretWord: string, the random word the user is trying to guess.  This is selected on line 9.
-    lettersGuessed: list of letters that have been guessed so far.
-    returns: boolean, True only if all the letters of secretWord are in lettersGuessed;
-      False otherwise
-    '''
+def word_description():
+
+    # print blanks for each letter in secret word
+    for character in secret_Word:
+        guess_word.append("_ ")
+
+    print("The word you must guess has", wordLength, "characters")
+
+    print("You may only enter 1 letter from a-z\n\n")
+
+    print(guess_word)
 
     # FILL IN YOUR CODE HERE...
 
