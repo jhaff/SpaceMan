@@ -1,22 +1,20 @@
 import random, sys
 from typing import List
 
-
 # Utility functions
 def print_word_to_guess(letters: List) -> None:
     #Print the current word to guess
     print("Word to guess: {0}".format(" ".join(letters)))
 
-
 def print_guesses_taken(current: int, total: int) -> None:
     #Print how many chances the player has used
     print("You are on guess {0}/{1}.".format(current, total))
 
-
 #use of a tuple because words will not change
 wordList = (
 "bowl", "power", "window", "computer", "phone", "juice", "macbook", "desktop",
-"laptop", "dog", "cat", "lemon", "cable", "mirror", "hat"
+"laptop", "dog", "cat", "lemon", "cable", "mirror", "hat", "spoon", "spongebob",
+"squidward", "patrick"
        )
 
 guess_word = []
@@ -40,13 +38,8 @@ def word_description():
 
     print_word_to_guess(guess_word)
 
-
-    #user guesses a letters
-
 def guessing():
-
     #Main game loop to have user guess letters and show results
-
     guess_taken = 1
     MAX_GUESS = 7
     print_guesses_taken(guess_taken, MAX_GUESS)
@@ -54,7 +47,7 @@ def guessing():
     while guess_taken < MAX_GUESS:
         guess = input("Pick a letter\n").lower()
         if not guess in alphabet: #check input
-            print("Enter a letter from a-z ALPHABET")
+            print("Enter a letter from a-z")
         elif guess in letter_storage: #checkif letter has been already used
             print("You have already guessed that letter!")
         else:
@@ -77,11 +70,11 @@ def guessing():
                 if guess_taken == 10:
                     print(" Sorry you lost! The secret word was {0}".format(SECRET_WORD))
 
-# run the game
+#main function to call the others
 def spaceman():
 
     word_description();
     guessing();
 
-
+# run the game
 spaceman();
