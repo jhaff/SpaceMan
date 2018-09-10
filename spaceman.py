@@ -14,15 +14,19 @@ def print_guesses_taken(current: int, total: int) -> None:
     print("You are on guess {0}/{1}.".format(current, total))
 
 def get_word():
+
     word_site = "http://svnweb.freebsd.org/csrg/share/dict/words?view=co&content-type=text/plain"
 
+    #pull down content from website
     response = requests.get(word_site)
+
+    #split word list up for other functions
     WORDS = response.content.splitlines()
 
+    #randomly select word
     word = (WORDS[randint(0,len(WORDS)-1)])
     word = str(word)
-    print(word[2:-1].lower());
-    wordLength = len(word[2:-1].lower())
+    # wordLength = len(word[2:-1].lower())
 
     return(word[2:-1].lower())
 
@@ -36,8 +40,6 @@ secret_word = get_word();
 #form empty mutable list to store guessed letters
 letter_storage = []
 
-wordLength = len(secret_word)
-
 #give user info about the word and the game rules
 def word_description():
 
@@ -45,13 +47,14 @@ def word_description():
     for character in secret_word:
         guess_word.append("_ ")
 
-    print("The word you must guess has", wordLength, "characters")
+    print("The word you must guess has", len(secret_word), "characters")
     print("You may only enter 1 letter from a-z\n\n")
 
     print_word_to_guess(guess_word)
 
 #Main game loop to have user guess letters and show results
 def guessing():
+
     guess_taken = 1
     MAX_GUESS = 7
     print_guesses_taken(guess_taken, MAX_GUESS)
@@ -60,14 +63,16 @@ def guessing():
         guess = input("Pick a letter\n").lower()
         if not guess.isalpha(): #check input
             print("Enter a letter from a-z")
-        elif guess in letter_storage: #checkif letter has been already used
+
+        elif guess in letter_storage: #check if letter has been already used
             print("You have already guessed that letter!")
+
         else:
             letter_storage.append(guess)
             if guess in secret_word:
                 print("You guessed correctly!")
                 #iterate through the secret word to fill in correctly guessed letters
-                for i in range(0, wordLength):
+                for i in range(0, len(secret_word)):
                     if secret_word[i] == guess:
                         guess_word[i] = guess
 
@@ -79,6 +84,7 @@ def guessing():
                 if not '_ ' in guess_word:
                     print("You won!")
                     break
+                    
             else:
                 print("The letter is not in the word. Try Again!")
                 guess_taken += 1
