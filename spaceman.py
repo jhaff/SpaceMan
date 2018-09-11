@@ -4,6 +4,9 @@ import random, sys
 import time
 import requests
 
+# this will shuffle random the same way each time so the word is the same with each run
+# random.seed(3)
+
 # Utility functions
 def print_word_to_guess(letters: List) -> None:
     #Print the current word to guess
@@ -30,18 +33,9 @@ def get_word():
 
     return(word[2:-1].lower())
 
-#initialize variables
-guess_word = []
-# randomly choose single word from the list
-
-secret_word = get_word();
-#make a variable for the length of the chosen word
-
-#form empty mutable list to store guessed letters
-letter_storage = []
 
 #give user info about the word and the game rules
-def word_description():
+def word_description(guess_word,secret_word):
 
     # print blanks for each letter in secret word
     for character in secret_word:
@@ -53,10 +47,15 @@ def word_description():
     print_word_to_guess(guess_word)
 
 #Main game loop to have user guess letters and show results
-def guessing():
+def guessing(guess_word,secret_word):
+
+    #Declare Variables
+    #form empty mutable list to store guessed letters
+    letter_storage = []
 
     guess_taken = 1
     MAX_GUESS = 7
+
     print_guesses_taken(guess_taken, MAX_GUESS)
 
     while guess_taken < MAX_GUESS:
@@ -84,7 +83,7 @@ def guessing():
                 if not '_ ' in guess_word:
                     print("You won!")
                     break
-                    
+
             else:
                 print("The letter is not in the word. Try Again!")
                 guess_taken += 1
@@ -99,9 +98,15 @@ def guessing():
 
 #main function to call the others
 def spaceman():
+    #initialize variables
+    guess_word = []
+    # randomly choose single word from the list
 
-    word_description();
-    guessing();
+    secret_word = get_word();
+    #make a variable for the length of the chosen word
+
+    word_description(guess_word,secret_word);
+    guessing(guess_word,secret_word);
 
 # run the game
 spaceman();
