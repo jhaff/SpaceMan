@@ -4,8 +4,10 @@ import random, sys
 import time
 import requests
 
+
 # this will shuffle random the same way each time so the word is the same with each run
 # random.seed(3)
+
 
 # Utility functions
 def print_word_to_guess(letters: List) -> None:
@@ -34,7 +36,7 @@ def get_word():
     return(word[2:-1].lower())
 
 
-#give user info about the word and the game rules
+#give user info about the word and the game rules 
 def word_description(guess_word,secret_word):
 
     # print blanks for each letter in secret word
@@ -59,7 +61,7 @@ def guessing(guess_word,secret_word):
     print_guesses_taken(guess_taken, MAX_GUESS)
 
     while guess_taken < MAX_GUESS:
-        guess = input("Pick a letter\n").lower()
+        guess = input("Choose a letter\n").lower()
         if not guess.isalpha(): #check input
             print("Enter a letter from a-z")
 
@@ -70,7 +72,7 @@ def guessing(guess_word,secret_word):
             letter_storage.append(guess)
             if guess in secret_word:
                 print("You guessed correctly!")
-                #iterate through the secret word to fill in correctly guessed letters
+                #iterate through the secret word to fill in any correctly guessed letters
                 for i in range(0, len(secret_word)):
                     if secret_word[i] == guess:
                         guess_word[i] = guess
@@ -85,7 +87,7 @@ def guessing(guess_word,secret_word):
                     break
 
             else:
-                print("The letter is not in the word. Try Again!")
+                print("That letter is not in the word. Try Again!")
                 guess_taken += 1
 
                 #print to show the user their progress
@@ -94,7 +96,7 @@ def guessing(guess_word,secret_word):
 
                 #check guess count to see if user has lost
                 if guess_taken == 7:
-                    print(" Sorry you lost! The secret word was {0}.".format(secret_word))
+                    print(" Sorry, you lost! The secret word was {0}.".format(secret_word))
 
 #main function to call the others
 def spaceman():
